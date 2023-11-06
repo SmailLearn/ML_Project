@@ -7,7 +7,7 @@ from pycaret.classification import *
 #from matplotlib.patches import Patch
 #from matplotlib.lines import Line2D
 
-df_p_h = pd.read_csv(r"C:\Users\1\Desktop\MSDE5\Machine_Learning_module_6\Projet\pp.csv", header = None)
+df_p_h = pd.read_csv(r"SmailLearn/ML_Project/main/pp.csv", header = None)
 df_p_h.columns = ['Town/City', 'Town/City_mean']
 
 #from scipy import stats
