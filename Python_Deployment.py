@@ -3,44 +3,44 @@ import pandas as pd
 import numpy as np
 import pickle
 from pycaret.classification import *
-from sklearn.preprocessing import RobustScaler
-from matplotlib.patches import Patch
-from matplotlib.lines import Line2D
+#from sklearn.preprocessing import RobustScaler
+#from matplotlib.patches import Patch
+#from matplotlib.lines import Line2D
 
-df_p_h = pd.read_csv(r"C:\Users\1\Desktop\MSDE5\Machine_Learning_module_6\Projet\pp-2021.csv", header = None)
-df_p_h.columns = ['Transaction unique identifier','Price','Date of Transfer','Postcode', 'Property Type', 'Old/New', 'Duration', 'PAON', 'SAON', 'Street', 'Locality', 'Town/City', 'District','County', 'PPD Category Type', 'Record Status - monthly file only']
+df_p_h = pd.read_csv(r"C:\Users\1\Desktop\MSDE5\Machine_Learning_module_6\Projet\pp.csv", header = None)
+df_p_h.columns = ['Town/City', 'Town/City_mean']
 
-from scipy import stats
+#from scipy import stats
 
 # Exemple avec une colonne 'Price'
-z_scores = stats.zscore(df_p_h['Price'])
-outliers = (z_scores > 3) | (z_scores < -3)
-outlier_values = df_p_h['Price'][outliers]
+#z_scores = stats.zscore(df_p_h['Price'])
+#outliers = (z_scores > 3) | (z_scores < -3)
+#outlier_values = df_p_h['Price'][outliers]
 
-df_no_out = df_p_h[~outliers]
+#df_no_out = df_p_h[~outliers]
 
-df_encoded = df_no_out
+#df_encoded = df_no_out
 
 #Grouping by Town/City
-df=df_encoded.groupby("Town/City")['Price'].mean().reset_index()
-Q1 = df['Price'].quantile(0.25)
-Q2 = df['Price'].quantile(0.50)
-Q3 = df['Price'].quantile(0.75)
-df_encoded.loc[df_encoded['Price'] <= Q1, 'Price_Category_Town/City'] = 'Low'
-df_encoded.loc[(df_encoded['Price'] <= Q2) & (df_encoded['Price'] > Q1), 'Price_Category_Town/City'] = 'Medium'
-df_encoded.loc[(df_encoded['Price'] <= Q3) & (df_encoded['Price'] > Q2), 'Price_Category_Town/City'] = 'High'
-df_encoded.loc[df_encoded['Price'] > Q3, 'Price_Category_Town/City'] = 'Very High'
-labels = {
-    'Low' : 1,
-    'Medium' : 2,
-    'High' : 3,
-    'Very High' : 4
-}
-df_encoded["Price_Category_Town/City"] = df_encoded["Price_Category_Town/City"].map(labels)
+#df=df_encoded.groupby("Town/City")['Price'].mean().reset_index()
+#Q1 = df['Price'].quantile(0.25)
+#Q2 = df['Price'].quantile(0.50)
+#Q3 = df['Price'].quantile(0.75)
+#df_encoded.loc[df_encoded['Price'] <= Q1, 'Price_Category_Town/City'] = 'Low'
+#df_encoded.loc[(df_encoded['Price'] <= Q2) & (df_encoded['Price'] > Q1), 'Price_Category_Town/City'] = 'Medium'
+#df_encoded.loc[(df_encoded['Price'] <= Q3) & (df_encoded['Price'] > Q2), 'Price_Category_Town/City'] = 'High'
+#df_encoded.loc[df_encoded['Price'] > Q3, 'Price_Category_Town/City'] = 'Very High'
+#labels = {
+#    'Low' : 1,
+#    'Medium' : 2,
+#    'High' : 3,
+#    'Very High' : 4
+#}
+#df_encoded["Price_Category_Town/City"] = df_encoded["Price_Category_Town/City"].map(labels)
 
-df_encoded['Town/City_mean'] = round(df_encoded.groupby('Town/City')['Price'].transform('mean'), 2)
+#df_encoded['Town/City_mean'] = round(df_encoded.groupby('Town/City')['Price'].transform('mean'), 2)
 
-dictionary = dict(zip(df_encoded['Town/City'], df_encoded['Town/City_mean']))
+dictionary = dict(zip(df_p_h['Town/City'], df_p_h['Town/City_mean']))
 city_names = list(dictionary.keys())
 
 
