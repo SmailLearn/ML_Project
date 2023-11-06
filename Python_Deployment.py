@@ -12,6 +12,7 @@ import io
 
 df_p_h = pd.read_csv('https://raw.githubusercontent.com/SmailLearn/ML_Project/main/pp.csv', header = None)
 df_p_h.columns = ['Town/City', 'Town/City_mean']
+df_p_h['Town/City_mean'] = pd.to_numeric(df_p_h['Town/City_mean'], errors='coerce')
 
 #from scipy import stats
 
