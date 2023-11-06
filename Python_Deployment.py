@@ -3,6 +3,9 @@ import pandas as pd
 import numpy as np
 import pickle
 from pycaret.classification import *
+import requests
+import io
+
 #from sklearn.preprocessing import RobustScaler
 #from matplotlib.patches import Patch
 #from matplotlib.lines import Line2D
@@ -45,8 +48,15 @@ city_names = list(dictionary.keys())
 
 
 # Load the trained model
-file = 'https://raw.githubusercontent.com/SmailLearn/ML_Project/main/xgboost_model_1.pkl'
-model = pickle.load(open(file, "rb"))
+url = 'https://raw.githubusercontent.com/SmailLearn/ML_Project/main/xgboost_model_1.pkl'
+
+# Download the file content
+response = requests.get(url)
+content = response.content
+
+#file = 'https://raw.githubusercontent.com/SmailLearn/ML_Project/main/xgboost_model_1.pkl'
+#model = pickle.load(open(file, "rb"))
+model = pickle.loads(content)
 
 # Streamlit App
 st.title("Price Housing Prediction App")
