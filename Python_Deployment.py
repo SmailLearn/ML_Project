@@ -45,7 +45,7 @@ city_names = list(dictionary.keys())
 
 
 # Load the trained model
-file = r"C:\Users\1\Desktop\MSDE5\Machine_Learning_MODULE_6\Projet\xgboost_model_1.pkl"
+file = 'https://raw.githubusercontent.com/SmailLearn/ML_Project/main/xgboost_model_1.pkl'
 model = pickle.load(open(file, "rb"))
 
 # Streamlit App
