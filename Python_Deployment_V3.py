@@ -72,4 +72,7 @@ except Exception as e:
 # Display the prediction
 st.title("Prediction Result")
 st.subheader("Prediction:")
-st.write(f"The predicted price is: {prediction[0]}")
+prediction_text = f"The predicted price is: {prediction[0]:,.2f} Pound"  # Format the prediction as currency
+st.markdown(f"**{prediction_text}**", unsafe_allow_html=True)  # Use markdown for better formatting
+
+#st.write(f"The predicted price is: {prediction[0]}")
