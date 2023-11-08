@@ -20,6 +20,7 @@ except Exception as e:
 # making the df_p_h to a dictionary where the first column is the key and the second is the value
 dictionary = dict(zip(df_p_h['Town/City'], df_p_h['Town/City_mean']))
 city_names = list(dictionary.keys())
+city_names_sorted = sorted(city_names)
 
 # Error Handling for Model Loading
 try:
@@ -49,7 +50,7 @@ feature9 = st.sidebar.slider("Prop_T()", min_value=0, max_value=1, value=0)
 feature10 = st.sidebar.slider("Sans paiement supplementaires(PPD Prop_A): 1-sans frais supplementaire, 0-Avec frais supplementaire", min_value=0, max_value=1, value=0)
 feature11 = st.sidebar.slider("New_Home(Old/New_N): 0-Old, 1-New", min_value=0, max_value=1, value=0)
 feature12 = st.sidebar.slider("Type de maison (Price_Category_Town/City): 1-Low, 2-Mid, 3-High, 4-Very High", min_value=1, max_value=4, value=1)
-feature2 = st.sidebar.selectbox("Select Town/City", city_names, key="city_selector")
+feature2 = st.sidebar.selectbox("Select Town/City", city_names_sorted, key="city_selector")
 
 # Make prediction
 try:
