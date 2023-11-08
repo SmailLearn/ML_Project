@@ -72,7 +72,7 @@ except Exception as e:
 # Display the prediction
 st.title("Prediction Result")
 st.subheader("The predicted price: ")
-prediction_text = f"The predicted price is: {prediction[0]:,.2f} euros"  # Format the prediction as currency
+prediction_text = f"{prediction[0]:,.2f} euros"  # Format the prediction as currency
 border_style = "2px solid #008080"  # Border style with color code
 st.markdown(f"<div style='text-align: center; padding: 20px; border: {border_style}; border-radius: 10px; background-color: #f0f8ff;'><h1 style='font-weight: bold;'>{prediction_text}</h1></div>", unsafe_allow_html=True)
 
