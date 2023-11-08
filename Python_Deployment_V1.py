@@ -4,7 +4,6 @@ import numpy as np
 import pickle
 from pycaret.classification import *
 import requests
-import io
 
 df_p_h = pd.read_csv('https://raw.githubusercontent.com/SmailLearn/ML_Project/main/df_town.csv', header = None)
 df_p_h.columns = ['Town/City' ,'Town/City_mean']
@@ -14,26 +13,11 @@ df_p_h['Town/City_mean'] = pd.to_numeric(df_p_h['Town/City_mean'], errors='coerc
 dictionary = dict(zip(df_p_h['Town/City'], df_p_h['Town/City_mean']))
 city_names = list(dictionary.keys())
 
-# file = 'https://raw.githubusercontent.com/SmailLearn/ML_Project/main/xgboost_model_1.pkl'
-# Load the trained model
-# file_path = r"C:\Users\1\Desktop\MSDE5\Machine_Learning_MODULE_6\Projet\xgboost_model_1.pkl"
-# with open(file, 'rb') as file:
-#    model = pickle.load(file)
-    
-url = 'https://raw.githubusercontent.com/SmailLearn/ML_Project/main/xgboost_model_1.pkl'
-
 # Download the file content
+url = 'https://raw.githubusercontent.com/SmailLearn/ML_Project/main/xgboost_model_1.pkl'
 response = requests.get(url)
 content = response.content
-
-#file = 'https://raw.githubusercontent.com/SmailLearn/ML_Project/main/xgboost_model_1.pkl'
-#model = pickle.load(open(file, "rb"))
 model = pickle.loads(content)
-
-
-
-
-
 
 # Streamlit App
 st.title("Price Housing Prediction App")
