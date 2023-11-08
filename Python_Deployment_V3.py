@@ -70,11 +70,11 @@ except Exception as e:
     st.error(f"An error occurred during prediction: {e}")
 
 # Display the prediction
+background_color = "#ADD8E6" 
 st.title("Prediction Result")
 st.subheader("The predicted price: ")
 prediction_text = f"{prediction[0]:,.2f} £"  # Format the prediction as currency
 border_style = "2px solid #008080"  # Border style with color code
-background_color = "#ADD8E6" 
 st.markdown(f"<div style='text-align: center; padding: 20px; border: {border_style}; border-radius: 10px; background-color: #f0f8ff;'><h1 style='font-weight: bold;'>{prediction_text}</h1></div>", unsafe_allow_html=True)
 
 #st.write(f"The predicted price is: {prediction[0]}")
